@@ -1,9 +1,0 @@
-[submodule "CLIP_Surgery"]
-	path = CLIP_Surgery
-	url = https://github.com/xmed-lab/CLIP_Surgery
-[submodule "Grad-Eclip"]
-	path = Grad-Eclip
-	url = https://github.com/Cyang-Zhao/Grad-Eclip.git
-[submodule "RISE"]
-	path = RISE
-	url = https://github.com/eclique/RISE
