@@ -1,0 +1,52 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zhao2024grad}
+\citation{radford2021learning}
+\citation{zhao2024grad}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology of Grad-ECLIP}{1}{section.2}\protected@file@percent }
+\newlabel{gen_inst}{{2}{1}{Methodology of Grad-ECLIP}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Core Principle}{1}{subsection.2.1}\protected@file@percent }
+\citation{selvaraju2017grad}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Channel and Spatial Importance}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Reproduction of Grad-ECLIP}{2}{section.3}\protected@file@percent }
+\newlabel{repro_efforts}{{3}{2}{Reproduction of Grad-ECLIP}{section.3}{}}
+\citation{lin2014microsoft}
+\citation{gao2022large}
+\citation{sharma2018conceptual}
+\citation{zhao2024grad}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental Configuration}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Reproducing Heatmap Explanations}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Qualitative Analysis}{3}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Comparison with Baselines.}{3}{section*.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Our reproduced visual explanations for the image-text pair "a dog is playing with frisbee," directly mirroring Figure 1 from the original paper. (a) The raw attention map demonstrates extreme sparsity and lacks informative detail. (b) The Grad-CAM adaptation appears noisy, erroneously activating irrelevant background regions. (c) Our reproduced Grad-ECLIP heatmap precisely and cleanly highlights both the dog and the frisbee, demonstrating clear semantic alignment.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:qualitative_repro}{{1}{3}{Our reproduced visual explanations for the image-text pair "a dog is playing with frisbee," directly mirroring Figure 1 from the original paper. (a) The raw attention map demonstrates extreme sparsity and lacks informative detail. (b) The Grad-CAM adaptation appears noisy, erroneously activating irrelevant background regions. (c) Our reproduced Grad-ECLIP heatmap precisely and cleanly highlights both the dog and the frisbee, demonstrating clear semantic alignment}{figure.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Textual Explanations.}{4}{section*.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Reproduced textual explanation for the sentence "a dog is playing with frisbee." The intensity of the green highlight directly correlates with the word's computed importance by Grad-ECLIP. As expected, the words "dog" and "frisbee" are correctly identified as the most salient tokens.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:textual_repro}{{2}{4}{Reproduced textual explanation for the sentence "a dog is playing with frisbee." The intensity of the green highlight directly correlates with the word's computed importance by Grad-ECLIP. As expected, the words "dog" and "frisbee" are correctly identified as the most salient tokens}{figure.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Concept Compositionality.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Empirical Validation of Grad-ECLIP}{4}{section.4}\protected@file@percent }
+\newlabel{repro_efforts}{{4}{4}{Empirical Validation of Grad-ECLIP}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Qualitative Insights: Concept Compositionality}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Visualization of concept decomposition and additivity, directly replicating findings from Figure 13 in the original paper. (Left) The heatmap generated for the prompt "toy" correctly highlights multiple toy objects within the scene. (Right) Conversely, when the prompt is refined to "brown toy," the heatmap's focus precisely isolates the single brown toy, unequivocally demonstrating Grad-ECLIP's capability to visualize CLIP's compositional understanding of attributes and objects.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:decomposition_repro}{{3}{4}{Visualization of concept decomposition and additivity, directly replicating findings from Figure 13 in the original paper. (Left) The heatmap generated for the prompt "toy" correctly highlights multiple toy objects within the scene. (Right) Conversely, when the prompt is refined to "brown toy," the heatmap's focus precisely isolates the single brown toy, unequivocally demonstrating Grad-ECLIP's capability to visualize CLIP's compositional understanding of attributes and objects}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Reproduced faithfulness metrics (AUC) on ImageNet (Top-1 Accuracy, Ground-Truth prompt). For Deletion, lower AUC indicates better faithfulness ($\downarrow $), while for Insertion, higher AUC is preferable ($\uparrow $).}}{5}{table.1}\protected@file@percent }
+\newlabel{table:quantitative-repro}{{1}{5}{Reproduced faithfulness metrics (AUC) on ImageNet (Top-1 Accuracy, Ground-Truth prompt). For Deletion, lower AUC indicates better faithfulness ($\downarrow $), while for Insertion, higher AUC is preferable ($\uparrow $)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Quantitative Metrics: Faithfulness Assessment}{5}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Reproduction of the Fine-Tuning Application}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Partial Reproduction: Fine-tuning Methodology}{5}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Partial Results and Analysis}{5}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Partial reproduction of fine-tuning results (Table 7 from the paper) on region classification (mAcc Top1, Boxes). Our results are obtained on a 10\% sample of CC3M.}}{6}{table.2}\protected@file@percent }
+\newlabel{table:finetuning-repro}{{2}{6}{Partial reproduction of fine-tuning results (Table 7 from the paper) on region classification (mAcc Top1, Boxes). Our results are obtained on a 10\% sample of CC3M}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Theoretical Analysis and Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{others}{{5}{6}{Theoretical Analysis and Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}A Generalization of Grad-CAM for Attention Mechanisms}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Heuristic Nature of "Loosened" Attention}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations and Critical Perspective}{6}{subsection.5.3}\protected@file@percent }
+\bibdata{tmlr}
+\bibstyle{tmlr}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Appendix}{7}{appendix.A}\protected@file@percent }
+\gdef \@abspage@last{7}
