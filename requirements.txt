@@ -1,0 +1,8 @@
+torch
+torchvision
+transformers
+ftfy 
+regex 
+tqdm
+matplotlib 
+opencv-python
