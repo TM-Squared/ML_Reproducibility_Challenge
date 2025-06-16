@@ -26,7 +26,7 @@ We visually compare saliency maps (heatmaps) from methods like **Grad-CLIP**, **
 **CLIP** learns visual representations from natural language, creating a shared embedding space. It uses a **Vision Transformer (ViT-B/16)** for images and a **Text Encoder** for text, projecting both into a common space.
 
 **Objective Function**:
-$\mathcal{L}_{CLIP} = -\frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp(\text{sim}(z_i^v, z_i^t) / \tau)}{\sum_{j=1}^{N} \exp(\text{sim}(z_i^v, z_j^t) / \tau)}$
+$\mathcal{L}_{CLIP} = -\frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp(sim(z_i^v, z_i^t) / \tau)}{\sum_{j=1}^{N} \exp(sim(z_i^v, z_j^t) / \tau)}$
 
 ### Grad-ECLIP Explained
 
@@ -35,7 +35,7 @@ Grad-ECLIP improves CLIP's interpretability by identifying key image regions and
 **Core Idea**: Gradients show how each attention connection influences the final image-text similarity.
 
 **Explainability Map**:
-$M_{\text{Grad-ECLIP}} = \sum_{l=1}^{L} \left|\frac{\partial \mathcal{L}}{\partial A^{(l)}}\right| \odot A^{(l)}$
+$M_{Grad-ECLIP} = \sum_{l=1}^{L} \left|\frac{\partial \mathcal{L}}{\partial A^(l)}\right| \odot A^{(l)}$
 
 Our implementation of the **attention layer** is crucial as it allows access to Q, K, V matrices and original attention weights, preserving the computation graph for gradient calculation.
 
@@ -44,7 +44,7 @@ Our implementation of the **attention layer** is crucial as it allows access to 
 **Dense encoding** is fundamental for Grad-ECLIP, ensuring spatial correspondence between features and image regions by using **all patch tokens** instead of just the [CLS] token.
 
 **Adaptive Position Embedding**: Handles varying image resolutions using **bicubic interpolation** to adapt the original position embeddings.
-$\text{PE}_{\text{interpolated}} = \text{Interpolate}(\text{PE}_{\text{original}}, H_{\text{new}}, W_{\text{new}})$
+$PE_{interpolated} = Interpolate(PE_{original}, H_new, W_{new})$
 
 Implemented as:
 ```python
@@ -60,7 +60,7 @@ Here's how Grad-ECLIP works step-by-step:
 3.  **Backward Pass**: We calculate the gradients of the loss $\mathcal{L} = -\log(s)$ with respect to the attention weights $G^{(l,h)}_{i,j} = \frac{\partial \mathcal{L}}{\partial A^{(l,h)}_{i,j}}$.
 4.  **Aggregation**: We combine the absolute values of these gradients with the attention weights: $|G^{(l,h)}| \odot A^{(l,h)}$.
 5.  **Visualization**: Finally, we generate the heatmap $
-M = \text{Reshape}\left(\sum_{l,h} |G^{(l,h)}| \odot A^{(l,h)}\right)
+M = {Reshape}\left(\sum_{l,h} |G^{(l,h)}| \odot A^{(l,h)}\right)
 $
 
 ---
