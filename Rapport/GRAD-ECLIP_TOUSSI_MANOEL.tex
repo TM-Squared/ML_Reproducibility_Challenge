@@ -109,7 +109,7 @@ Our first evaluation replicated the seminal comparison figure from the original 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\linewidth]{./../assets/images/carte\_saillance.jpg}
+\includegraphics[width=\linewidth]{../assets/images/carte\_saillance.png}
 \caption{Our reproduced visual explanations for various image-text pairs, demonstrating Grad-ECLIP's efficacy against baselines. This figure mirrors the seminal comparison from the original paper. Each row shows: Original Image, Grad-ECLIP, ECLIP (with K-NN), GAIA, MaskCLIP, Grad-CAM, Rollout, SelfAttn, and RAW. We observe Grad-ECLIP's superior precision in highlighting relevant regions compared to other methods, such as the noisier Grad-CAM or sparse Raw Attention. }
 \label{fig:qualitative_repro}
 \end{figure}
@@ -121,7 +121,7 @@ Beyond visual cues, Grad-ECLIP is engineered to pinpoint the most influential wo
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.9\linewidth]{./../assets/images/text\_grad-eclip.jpg}
+\includegraphics[width=0.9\linewidth]{../assets/images/text\_grad-eclip.png}
 \caption{Reproduced textual explanation for multiple sentences, showing words highlighted by color intensity according to their computed importance by Grad-ECLIP. As expected, key words like "cats" and "shoes" or specific car details are identified as the most salient tokens for their respective image-text pairs. The legend indicates that Red = Negative Impact, White = Neutral, Green = Positive Impact. }
 \label{fig:textual_repro}
 \end{figure}
@@ -140,7 +140,7 @@ Our reproducibility efforts were dual-pronged: first, to meticulously re-impleme
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\linewidth]{./../assets/images/Grad-ECLIP-output.jpg} 
+\includegraphics[width=\linewidth]{./../assets/images/Grad-ECLIP-output.png} 
 \caption{Visualization of concept decomposition and additivity, replicating findings similar to Figure 13 in the original paper. This series of heatmaps demonstrates Grad-ECLIP's ability to focus on specific entities (like the French Bulldog in the car) even in complex scenes, showing how attention shifts based on nuanced textual prompts. The sequence illustrates the refinement of focus, unequivocally demonstrating Grad-ECLIP's capability to visualize CLIP's compositional understanding of attributes and objects.}
 \label{fig:decomposition_repro}
 \end{figure}
