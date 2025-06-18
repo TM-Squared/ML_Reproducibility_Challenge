@@ -109,14 +109,8 @@ Our first evaluation replicated the seminal comparison figure from the original 
 
 \begin{figure}[h!]
 \centering
-% --- USER ACTION REQUIRED ---
-% Replace the placeholder below with the path to your image file.
-% This image should be a composite figure showing a comparison of Raw Attention, Grad-CAM,
-% and your reproduced Grad-ECLIP for a specific image-text pair (e.g., "a dog is playing with frisbee").
-% It should have sub-figures, for example: (a) Raw Attention, (b) Grad-CAM, (c) Grad-ECLIP (Ours).
-% Example: \includegraphics[width=\linewidth]{figures/qualitative_comparison.png}
-\fbox{\rule{0pt}{5cm}\rule{0.9\linewidth}{0pt}}
-\caption{Our reproduced visual explanations for the image-text pair "a dog is playing with frisbee," directly mirroring Figure 1 from the original paper. (a) The raw attention map demonstrates extreme sparsity and lacks informative detail. (b) The Grad-CAM adaptation appears noisy, erroneously activating irrelevant background regions. (c) Our reproduced Grad-ECLIP heatmap precisely and cleanly highlights both the dog and the frisbee, demonstrating clear semantic alignment.}
+\includegraphics[width=\linewidth]{./../assets/images/carte\_saillance.jpg}
+\caption{Our reproduced visual explanations for various image-text pairs, demonstrating Grad-ECLIP's efficacy against baselines. This figure mirrors the seminal comparison from the original paper. Each row shows: Original Image, Grad-ECLIP, ECLIP (with K-NN), GAIA, MaskCLIP, Grad-CAM, Rollout, SelfAttn, and RAW. We observe Grad-ECLIP's superior precision in highlighting relevant regions compared to other methods, such as the noisier Grad-CAM or sparse Raw Attention. }
 \label{fig:qualitative_repro}
 \end{figure}
 
@@ -127,13 +121,8 @@ Beyond visual cues, Grad-ECLIP is engineered to pinpoint the most influential wo
 
 \begin{figure}[h!]
 \centering
-% --- USER ACTION REQUIRED ---
-% Replace the placeholder below with an image showing your textual explanation results.
-% This could be a screenshot of the text with words highlighted by color intensity,
-% corresponding to the image in the previous figure.
-% Example: \includegraphics[width=0.8\linewidth]{figures/textual_explanation.png}
-\fbox{\rule{0pt}{1.5cm}\rule{0.8\linewidth}{0pt}}
-\caption{Reproduced textual explanation for the sentence "a dog is playing with frisbee." The intensity of the green highlight directly correlates with the word's computed importance by Grad-ECLIP. As expected, the words "dog" and "frisbee" are correctly identified as the most salient tokens.}
+\includegraphics[width=0.9\linewidth]{./../assets/images/text\_grad-eclip.jpg}
+\caption{Reproduced textual explanation for multiple sentences, showing words highlighted by color intensity according to their computed importance by Grad-ECLIP. As expected, key words like "cats" and "shoes" or specific car details are identified as the most salient tokens for their respective image-text pairs. The legend indicates that Red = Negative Impact, White = Neutral, Green = Positive Impact. }
 \label{fig:textual_repro}
 \end{figure}
 
@@ -151,13 +140,8 @@ Our reproducibility efforts were dual-pronged: first, to meticulously re-impleme
 
 \begin{figure}[h!]
 \centering
-% --- USER ACTION REQUIRED ---
-% Replace the placeholder below with your image demonstrating concept decomposition.
-% This should show heatmaps for prompts like "toy" vs. "brown toy" or "skis" vs. "stand on skis",
-% similar to Figure 13 in the original paper.
-% Example: \includegraphics[width=\linewidth]{figures/concept_decomposition.png}
-\fbox{\rule{0pt}{4cm}\rule{\linewidth}{0pt}}
-\caption{Visualization of concept decomposition and additivity, directly replicating findings from Figure 13 in the original paper. (Left) The heatmap generated for the prompt "toy" correctly highlights multiple toy objects within the scene. (Right) Conversely, when the prompt is refined to "brown toy," the heatmap's focus precisely isolates the single brown toy, unequivocally demonstrating Grad-ECLIP's capability to visualize CLIP's compositional understanding of attributes and objects.}
+\includegraphics[width=\linewidth]{./../assets/images/Grad-ECLIP-output.jpg} 
+\caption{Visualization of concept decomposition and additivity, replicating findings similar to Figure 13 in the original paper. This series of heatmaps demonstrates Grad-ECLIP's ability to focus on specific entities (like the French Bulldog in the car) even in complex scenes, showing how attention shifts based on nuanced textual prompts. The sequence illustrates the refinement of focus, unequivocally demonstrating Grad-ECLIP's capability to visualize CLIP's compositional understanding of attributes and objects.}
 \label{fig:decomposition_repro}
 \end{figure}
 

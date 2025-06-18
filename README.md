@@ -1,75 +1,43 @@
----
 # ML Reproducibility Challenge: Explainability Methods for CLIP
 
-This repo explores and compares various **explainability methods for CLIP (Contrastive Language-Image Pre-training)** models, focusing on **Grad-ECLIP** to make CLIP's predictions more interpretable.
 
----
-## Table of Contents
 
-- [Introduction](#introduction)
-- [Key Concepts](#key-concepts)
-  - [CLIP Overview](#clip-overview)
-  - [Grad-ECLIP Explained](#grad-eclip-explained)
-  - [Dense Encoding & Position Embeddings](#dense-encoding--position-embeddings)
-- [Installation](#installation)
+Ce dépôt explore et compare diverses **méthodes d'explicabilité pour CLIP (Contrastive Language-Image Pre-training)**, en se concentrant sur **Grad-ECLIP** pour rendre les prédictions de CLIP plus interprétables. Ma contribution porte sur l'analyse qualitative des méthodes d'explicabilité et l'implémentation du fine-tuning guidé par Grad-ECLIP.
 
----
-## Introduction
+## 📝 Table des matières
+- [Introduction](#-introduction)
+- [Méthodes Implémentées](#-méthodes-implémentées)
+- [Résultats Qualitatifs](#-résultats-qualitatifs)
+- [Installation](#-installation)
+- [Utilisation](#-utilisation)
+- [Fine-Tuning](#-fine-tuning-à-venir)
+- [Contribution](#-contribution)
+- [Références](#-références)
 
-We visually compare saliency maps (heatmaps) from methods like **Grad-CLIP**, **GAME**, **MaskCLIP**, **GradCAM**, **Rollout Attention**, **Self-Attention**, **CLIP Surgery**, and **M2IB** to understand what drives CLIP's image predictions.
+## 🌟 Introduction
+Ce projet reproduit et étend **Grad-ECLIP** ([Zhao et al., 2024](https://arxiv.org/abs/2502.18816v1)), une méthode gradient-based pour expliquer les prédictions de CLIP via :
+- **Cartes de salience visuelles** (régions influentes dans l'image)
+- **Explications textuelles** (mots clés dans le prompt)
 
----
-## Key Concepts
+Mon travail couvre :
+1. L'analyse comparative qualitative des méthodes d'explicabilité (Grad-ECLIP vs. Grad-CAM, Rollout, etc.)
+2. L'implémentation du fine-tuning utilisant les heatmaps de Grad-ECLIP pour améliorer l'alignement région-texte.
 
-### CLIP Overview
+## 🛠 Méthodes Implémentées
+### Méthodes d'explicabilité évaluées
+| Méthode          | Type               | Spécifique au texte? |
+|------------------|--------------------|----------------------|
+| Grad-ECLIP       | Gradient-based     | ✅                   |
+| Grad-CAM         | Gradient-based     | ✅                   |
+| Rollout          | Attention-based    | ❌                   |
+| MaskCLIP         | Similarité cosine  | ✅                   |
+| CLIP Surgery     | Similarité modifiée| ✅                   |
 
-**CLIP** learns visual representations from natural language, creating a shared embedding space. It uses a **Vision Transformer (ViT-B/16)** for images and a **Text Encoder** for text, projecting both into a common space.
-
-**Objective Function**:
-$\mathcal{L}_{CLIP} = -\frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp(sim(z_i^v, z_i^t) / \tau)}{\sum_{j=1}^{N} \exp(sim(z_i^v, z_j^t) / \tau)}$
-
-### Grad-ECLIP Explained
-
-Grad-ECLIP improves CLIP's interpretability by identifying key image regions and linking them to text queries. Unlike global [CLS] token summaries, Grad-ECLIP uses **gradients of the Vision Transformer's attention mechanisms**.
-
-**Core Idea**: Gradients show how each attention connection influences the final image-text similarity.
-
-**Explainability Map**:
-$M_{Grad-ECLIP} = \sum_{l=1}^{L} \left|\frac{\partial \mathcal{L}}{\partial A^(l)}\right| \odot A^{(l)}$
-
-Our implementation of the **attention layer** is crucial as it allows access to Q, K, V matrices and original attention weights, preserving the computation graph for gradient calculation.
-
-### Dense Encoding & Position Embeddings
-
-**Dense encoding** is fundamental for Grad-ECLIP, ensuring spatial correspondence between features and image regions by using **all patch tokens** instead of just the [CLS] token.
-
-**Adaptive Position Embedding**: Handles varying image resolutions using **bicubic interpolation** to adapt the original position embeddings.
-$PE_{interpolated} = Interpolate(PE_{original}, H_new, W_{new})$
-
-Implemented as:
+### Grad-ECLIP (Notre focus)
 ```python
-img_pos = torch.nn.functional.interpolate(img_pos, size=(feah, feaw), mode='bicubic' align_corners=False)
-```
-
-## Grad-ECLIP Algorithm
-
-Here's how Grad-ECLIP works step-by-step:
-
-1.  **Forward Pass**: We densely encode both the image and the text.
-2.  **Similarity**: We compute the CLIP score ($s$) to see how well the image and text match.
-3.  **Backward Pass**: We calculate the gradients of the loss $\mathcal{L} = -\log(s)$ with respect to the attention weights $G^{(l,h)}_{i,j} = \frac{\partial \mathcal{L}}{\partial A^{(l,h)}_{i,j}}$.
-4.  **Aggregation**: We combine the absolute values of these gradients with the attention weights: $|G^{(l,h)}| \odot A^{(l,h)}$.
-5.  **Visualization**: Finally, we generate the heatmap $
-M = {Reshape}\left(\sum_{l,h} |G^{(l,h)}| \odot A^{(l,h)}\right)
-$
-
----
-## Installation
-
-To get started, clone this repository and install the required dependencies:
-
-```bash
-git clone https://github.com/TM-Squared/ML_Reproducibility_Challenge.git
-cd ML_Reproducibility_Challenge
-pip install -r requirements.txt
+# Pseudocode de l'explication visuelle
+heatmap = sum(
+    abs(∂(cosine_similarity)/∂A^(l)) ⊙ A^(l) 
+    for l in layers
+)
 ```
